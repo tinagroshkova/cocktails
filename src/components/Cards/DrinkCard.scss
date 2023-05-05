@@ -1,0 +1,24 @@
+@import "../../variables";
+@import "../../mixins";
+
+.drink-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 50px;
+
+    .card {
+        width: 300px;
+        box-shadow: $box-shadow;
+        text-align: center;
+        img {
+            width: 100%;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            height: 300px;
+            margin: auto;
+            object-fit: cover;
+        }
+    }
+}

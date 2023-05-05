@@ -1,0 +1,179 @@
+@import "../../variables";
+@import "../../mixins";
+
+* {
+    color: $light-main-color;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pageHolder {
+    height: 94vh;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+    .loginForm,
+    .registrationForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-items: center;
+        justify-content: center;
+        font-size: 18px;
+        top: 20%;
+        background: transparent;
+        box-shadow: 0px -1px 50px 12px $dark-main-color;
+        z-index: 20;
+        box-shadow: 0px -1px 40px 1px $light-main-color;
+        @include border();
+
+        h2 {
+            font-size: 2em;
+            color: $light-main-color;
+            text-align: center;
+            padding: 30px 0 0 0;
+        }
+
+        .text-danger,
+        .form-text {
+            font-size: 16px;
+            color: $second-main-color;
+            height: 30px;
+            position: absolute;
+        }
+
+        .btnHolder {
+            margin: 20px 0 20px 0;
+
+            .btn-primary {
+                @include button();
+                margin-bottom: 10px;
+                width: 300px;
+            }
+        }
+    }
+    .registerLink {
+        text-decoration: none;
+        color: $almost-white-color;
+    
+        a {
+            color: $almost-white-color;
+            text-decoration: none;
+            font-weight: 600;
+    
+            &:hover {
+                color: $second-main-color;
+            }
+        }
+    }
+    
+    @media (max-width: 1980px) {
+        top: 10%;
+    }
+    
+    @media (max-width: 1366px) {
+        top: 8%;
+    }
+}
+
+
+
+
+.inputBox {
+    position: relative;
+    width: 336px;
+    margin: 30px;
+    border-bottom: 2px solid $light-main-color;
+
+    label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        color: $light-main-color;
+        font-weight: 400;
+        pointer-events: none;
+        transition: .5s;
+    }
+
+    input {
+        width: 100%;
+        height: 50px;
+        border: none;
+        outline: none;
+        color: $light-main-color;
+        background-color: transparent;
+        border-radius: 15px;
+
+        &:focus {
+            background-color: transparent;
+            color: $light-main-color;
+            outline: none;
+            box-shadow: none;
+            border-color: transparent;
+        }
+
+        &:focus~label,
+        &:valid~label {
+            top: -5px;
+        }
+    }
+
+    .icon {
+        position: absolute;
+        right: 8px;
+        color: $light-main-color;
+        font-size: 1.2em;
+        line-height: 57px;
+    }
+
+    @media (max-width: 360px) {
+        .inputBox {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            border-radius: 0;
+        }
+    }
+}
+
+.enabled {
+    background-color: $light-main-color !important;
+}
+
+
+.form-control.is-invalid:focus {
+    border: none;
+    box-shadow: none;
+    background: none;
+
+}
+
+.invalid-feedback {
+    color: $light-main-color !important;
+}
+
+
+.registrationForm {
+    height: 640px;
+}
+
+.loginForm {
+    height: 520px;
+
+    .alert {
+        position: absolute;
+        width: 100%;
+        bottom: 120px;
+        left: 0;
+        background-color: transparent;
+        border: none;
+        color: $light-main-color;
+    }
+}
