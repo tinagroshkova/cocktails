@@ -1,0 +1,22 @@
+@import "../../variables";
+@import "../../mixins";
+
+.cocktails-list {
+    margin: 100px 300px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.search-container {
+    position: absolute;
+    right: 340px;
+    top: 15px;
+
+    margin: auto;
+    input {
+        @include search();
+    }
+}

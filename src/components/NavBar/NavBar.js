@@ -9,7 +9,7 @@ import LoginForm from "../../pages/LoginAndRegister/LoginForm";
 import RegistrationForm from "../../pages/LoginAndRegister/RegistrationForm";
 import { Link, Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import "./NavBar.scss";
-import CocktailsPage from '../../pages/CocktailsPage/CocktailsPage';
+import { CocktailsPage } from '../../pages/CocktailsPage/CocktailsPage';
 import FavouritesPage from '../../pages/FavouritesPage/FavouritesPage';
 // import ConfirmModal from "../../components/Modals/ConfirmModal";
 
@@ -35,15 +35,6 @@ function NavBar() {
                 <NavDropdown.Item href="#action5">Drink type</NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Search</Button>
-            </Form>
           </Navbar.Collapse>
         </Container>
       </Navbar>

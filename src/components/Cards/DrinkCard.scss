@@ -1,24 +1,59 @@
 @import "../../variables";
 @import "../../mixins";
 
-.drink-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-    margin-top: 50px;
 
-    .card {
-        width: 300px;
-        box-shadow: $box-shadow;
-        text-align: center;
-        img {
-            width: 100%;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            height: 300px;
-            margin: auto;
-            object-fit: cover;
-        }
+
+.card {
+    width: 300px;
+    box-shadow: $box-shadow;
+    text-align: center;
+    background-color: transparent;
+    backdrop-filter: blur(50px);
+    padding-bottom: 20px;
+    position: relative;
+    border-radius: 40px;
+
+    .card-body {
+        // position: relative;
     }
+
+    h5,
+    p {
+        color: $dark-main-color;
+    }
+
+    img {
+        width: 100%;
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        height: 300px;
+        margin: auto;
+        object-fit: cover;
+    }
+
+    button {
+        @include button();
+    }
+
+    .btn-primary {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        font-size: 18px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        padding: 0;
+        height: 50px
+    }
+
+    .btn-secondary {
+        @include button();
+        position: absolute;
+        top: 280px;
+        right: 0;
+        width: 65px;
+        font-size: 12px;
+    }
+
 }
