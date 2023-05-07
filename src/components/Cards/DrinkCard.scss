@@ -35,7 +35,8 @@
         @include button();
     }
 
-    .btn-primary {
+    .addButton,
+    .removeButton {
         position: absolute;
         bottom: 0;
         left: 0;
@@ -47,7 +48,7 @@
         height: 50px
     }
 
-    .btn-secondary {
+    .detailsButton {
         @include button();
         position: absolute;
         top: 280px;

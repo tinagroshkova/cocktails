@@ -3,53 +3,91 @@ import cocktailsManager from "../../services/CocktailsManager";
 import DrinkCard from "../../components/Cards/DrinkCard";
 import "./CocktailsPage.scss";
 import useDebounce from "../../components/Utils/Debounce";
-
+import userManager from "../../services/UserManager";
+import LoginModal from "../../components/Modals/LoginModal";
+import { useNavigate } from "react-router-dom";
 
 function CocktailsPage() {
-  const [cocktailsList, setCocktailsList] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
-  const [originalList, setOriginalList] = useState([]);
-  const debouncedSearchInput = useDebounce(searchInput, 300);
+    const [cocktailsList, setCocktailsList] = useState([]);
+    const [searchInput, setSearchInput] = useState("");
+    const [originalList, setOriginalList] = useState([]);
+    const debouncedSearchInput = useDebounce(searchInput, 300);
+    const [addedCocktails, setAddedCocktails] = useState([]);
+    const navigate = useNavigate();
+    const user = userManager.getLoggedInUser();
 
-  useEffect(() => {
-    async function fetchDrinks() {
-      const result = await cocktailsManager.getAllCocktails();
-      setCocktailsList(result);
-      setOriginalList(result);
-    }
-    fetchDrinks();
-  }, []);
+    useEffect(() => {
+        async function fetchDrinks() {
+            const result = await cocktailsManager.getAllCocktails();
+            setCocktailsList(result);
+            setOriginalList(result);
+        }
+        fetchDrinks();
+        setAddedCocktails(user ? user.favourites || [] : []);
+    }, [userManager.getLoggedInUser()]);
 
-  async function handleSearchInputChange(event) {
-    const keyword = event.target.value;
-    setSearchInput(keyword);
-    if (keyword.trim() === "") {
-      setCocktailsList(originalList);
-      return;
-    }
-    const result = await cocktailsManager.search(keyword);
-    setCocktailsList(result);
-  }
+    const handleSearchInputChange = async (event) => {
+        const keyword = event.target.value;
+        setSearchInput(keyword);
+        if (keyword.trim() === "") {
+            setCocktailsList(originalList);
+            return;
+        }
+        const result = await cocktailsManager.search(keyword);
+        setCocktailsList(result);
+    };
 
-  return (
-    <div className="cocktails-page">
-      <div className="search-container">
-        <input
-          type="text"
-          value={searchInput}
-          placeholder="Search for cocktail"
-          onChange={handleSearchInputChange}
-        />
-      </div>
+    const handleAdd = async (cocktail) => {
+        if (!user) {
+            const shouldNavigateToLogin = await LoginModal();
+            if (shouldNavigateToLogin) {
+                navigate("/login");
+            }
+            return;
+        }
 
-      <div className="cocktails-list">
-        {cocktailsList
-          .map((cocktail) => (
-            <DrinkCard cocktail={cocktail} key={cocktail.id} />
-          ))}
-      </div>
-    </div>
-  );
+        if (user.hasCocktail(cocktail)) {
+            userManager.remove(cocktail);
+            setAddedCocktails((prevCocktails) =>
+                prevCocktails.filter((a) => a.name !== cocktail.name)
+            );
+        } else {
+            userManager.add(cocktail);
+            setAddedCocktails((prevCocktails) => [...prevCocktails, cocktail]);
+        }
+    };
+
+    const handleDetails = async (cocktail) => {
+        try {
+            navigate(`/details/${cocktail.id}`);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    return (
+        <div className="cocktails-page">
+            <div className="search-container">
+                <input
+                    type="text"
+                    value={searchInput}
+                    placeholder="Search for cocktail"
+                    onChange={handleSearchInputChange}
+                />
+            </div>
+
+            <div className="cocktails-list">
+                {cocktailsList.map((cocktail) => (
+                        <DrinkCard
+                            cocktail={cocktail}
+                            key={cocktail.id}
+                            onAdd={handleAdd}
+                            added={addedCocktails.some((c) => c.name === cocktail.name)}
+                            onDetails={() => handleDetails(cocktail)} />
+                    ))}
+            </div>
+        </div>
+    );
 }
 
 export { CocktailsPage };

@@ -12,6 +12,8 @@ import "./NavBar.scss";
 import { CocktailsPage } from '../../pages/CocktailsPage/CocktailsPage';
 import FavouritesPage from '../../pages/FavouritesPage/FavouritesPage';
 // import ConfirmModal from "../../components/Modals/ConfirmModal";
+import DetailsPage from "../../pages/DetailsPage/DetailsPage";
+
 
 function NavBar() {
   return (
@@ -45,6 +47,7 @@ function NavBar() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/cocktails" element={<CocktailsPage />} />
         <Route path="/favourites" element={<FavouritesPage />} />
+        <Route path="/details/:id" element={<DetailsPage />} />
 
         {/* <Route path="*" element={<><h2 style={{ color: "white", display: "flex", justifyContent: "center" }}>Page not found. You've taken a wrong turn, but you found a hedgehog.</h2>
           <div className="errorImage">

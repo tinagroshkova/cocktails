@@ -99,7 +99,7 @@ class UserManager {
         }
     }
 
-    addcocktail(cocktail) {
+    add(cocktail) {
         const user = this.getLoggedInUser();
         if (user && !user.hasCocktail(cocktail)) {
             user.favourites.push(cocktail);
@@ -107,7 +107,7 @@ class UserManager {
         }
     }
 
-    removecocktail(cocktail) {
+    remove(cocktail) {
         const user = this.getLoggedInUser();
         if (user && user.hasCocktail(cocktail)) {
             user.favourites = user.favourites.filter(a => a.name !== cocktail.name);

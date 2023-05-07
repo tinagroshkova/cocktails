@@ -1,11 +1,14 @@
 import { makeAPICall } from "../Utilities";
 
 class Cocktail {
-  constructor(id, name, image, ingredients, type) {
+  constructor(id, name, image, ingredients, measures, instructions, glass, type) {
     this.id = id;
     this.name = name;
     this.image = image;
     this.ingredients = ingredients;
+    this.measures = measures;
+    this.instructions = instructions;
+    this.glass = glass;
     this.type = type;
   }
 }
@@ -20,7 +23,14 @@ const mapCocktailDataToCocktailObject = (drink) => {
       ingredients.push(ingredient);
     }
   }
-  return new Cocktail(drink.idDrink, drink.strDrink, drink.strDrinkThumb, ingredients, drink.strAlcoholic);
+  const measures = [];
+  for (let i = 1; i <= 15; i++) {
+    const measure = drink[`strMeasure${i}`];
+    if (measure !== null) {
+      measures.push(measure);
+    }
+  }
+  return new Cocktail(drink.idDrink, drink.strDrink, drink.strDrinkThumb, ingredients, measures, drink.strInstructions, drink.strGlass, drink.strAlcoholic);
 }
 
 class CocktailsManager {
@@ -35,7 +45,9 @@ class CocktailsManager {
 
   getAllCocktails = async () => {
     const data = await makeAPICall(COCKTAILS_URL + `search.php?f=t`);
+    // console.log(data);
     this.cocktailsList = data.drinks.map(mapCocktailDataToCocktailObject);
+    console.log(this.cocktailsList);
     return this.cocktailsList;
   };
 
@@ -45,8 +57,16 @@ class CocktailsManager {
     return searchedCocktails;
   }
 
-  getDetails = (cocktailId) => {
-    return makeAPICall(COCKTAILS_URL + `lookup.php?i=${cocktailId}`)
+  getDetails = async (cocktailId) => {
+    const data = await makeAPICall(`${COCKTAILS_URL}lookup.php?i=${cocktailId}`);
+    if (data.drinks && data.drinks.length > 0) {
+      const detailed = mapCocktailDataToCocktailObject(data.drinks[0]);
+      // console.log(detailed);
+      return detailed;
+    } else {
+      console.log('No details found for cocktailId:', cocktailId);
+      return null;
+    }
   }
 
 
