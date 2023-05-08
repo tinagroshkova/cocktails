@@ -1,7 +1,6 @@
 @mixin border() {
-    border: 2px solid $light-contrast-color;
+    border: 2px solid $dark-main-color;
     border-radius: 20px;
-    background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(25px);
     box-shadow: $strong-shadow;
 }

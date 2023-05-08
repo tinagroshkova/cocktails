@@ -113,7 +113,7 @@ const LoginForm = () => {
             </Button>
             <div className="registerLink">
               <p className="haveAnAcount">Don"t have an account?
-                <Link to="/register"> <span className="registerHover">Sign up</span></Link></p>
+                <Link to="/register"><span className="registerHover">Sign up</span></Link></p>
             </div>
           </span>
         </form>

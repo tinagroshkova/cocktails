@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import React, { useState, useEffect } from "react";
-import { NavLink, Route, Routes, Navigate, useNavigate } from "react-router-dom";
+import { NavLink, Route, Routes, Navigate, useNavigate, useLocation } from "react-router-dom";
 import LoginForm from "../../pages/LoginAndRegister/LoginForm";
 import RegistrationForm from "../../pages/LoginAndRegister/RegistrationForm";
 import "./NavBar.scss";
@@ -17,6 +17,7 @@ function NavBar() {
 
   const loggedInUser = userManager.getLoggedInUser();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = async () => {
     const isConfirmed = await ConfirmModal("Logout", "Are you sure you want to logout?");
@@ -30,9 +31,9 @@ function NavBar() {
   return (
     <>
       <Navbar bg="dark" expand="lg" className="navbar">
-        <NavLink to="/cocktails" activeclassname="activeLink">Cocktails</NavLink>
-        <NavLink to="/favourites" activeclassname="activeLink">My favourites</NavLink>
-        <NavLink to="/filters" activeclassname="activeLink">Filters</NavLink>
+        <NavLink to="/cocktails">Cocktails</NavLink>
+        <NavLink to="/favourites">My favourites</NavLink>
+        <NavLink to="/filters">Filters</NavLink>
         {loggedInUser ? (
           <button className="logoutButton" onClick={handleLogout}>Logout</button>
         ) : null}
@@ -47,9 +48,16 @@ function NavBar() {
         <Route path="/filters" element={<FiltersPage />} />
         <Route path="/details/:id" element={<DetailsPage />} />
 
-        {/* <Route path="*" element={<><h2 style={{ color: "white", display: "flex", justifyContent: "center" }}>Page not found. You've taken a wrong turn, but you found a hedgehog.</h2>
-          <div className="errorImage">
-            <img width={650} src={errorpic} alt="errorImage"></img></div></>} /> */}
+        <Route path="*" element={
+          <>
+            <div className="errorPage">
+              <div className="text">
+                <h1> ERROR 404 </h1>
+                <h2>Go <a href="/cocktails" >home!</a> You're Drunk! </h2>
+              </div>
+            </div>
+          </>
+        } />
       </Routes>
     </>
   );

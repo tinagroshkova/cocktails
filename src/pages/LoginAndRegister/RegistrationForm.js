@@ -180,7 +180,7 @@ const RegistrationForm = () => {
             </Button>
             <div className="registerLink">
               <p className="haveAnAcount">Already have an account?
-                <Link to="/login"><span className="registerHover"> Log in</span></Link></p>
+                <Link to="/login"><span className="registerHover">Log in</span></Link></p>
             </div>
           </span>
         </form>

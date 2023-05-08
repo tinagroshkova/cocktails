@@ -16,10 +16,9 @@ section {
     .loginForm,
     .registrationForm {
         * {
-            color: $light-contrast-color;
-            font-weight: 300;
-
+            color: $dark-main-color;
         }
+
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -56,23 +55,23 @@ section {
             }
         }
     }
-    .registerLink {
-        text-decoration: none;
-        color: $almost-white-color;
-    
+
+    .registerHover {
+        color: $second-main-color;
+        font-weight: 700;
+        padding-left: 10px;
         a {
-            text-decoration: none;
-    
             &:hover {
                 color: $second-main-color;
             }
+
         }
     }
-    
+
     @media (max-width: 1980px) {
         top: 10%;
     }
-    
+
     @media (max-width: 1366px) {
         top: 8%;
     }
@@ -83,7 +82,7 @@ section {
     position: relative;
     width: 336px;
     margin: 30px;
-    border-bottom: 2px solid $light-contrast-color;
+    border-bottom: 2px solid $dark-main-color;
 
     label {
         position: absolute;
@@ -138,7 +137,7 @@ section {
 }
 
 .enabled {
-    background-color: $light-contrast-color !important;
+    background-color: $second-main-color !important;
     color: $dark-main-color !important;
 }
 
@@ -147,11 +146,10 @@ section {
     border: none;
     box-shadow: none;
     background: none;
-
 }
 
 .invalid-feedback {
-    color: $light-main-color !important;
+    color: $second-main-color !important;
 }
 
 
@@ -169,6 +167,6 @@ section {
         left: 0;
         background-color: transparent;
         border: none;
-        color: $light-main-color;
+        color: $second-main-color;
     }
 }
