@@ -5,13 +5,12 @@ class User {
         this.password = password;
         this.image = "";
         this.favourites = [];
-        
     }
 
     hasCocktail(cocktail) {
         return this.favourites.some(a => a.name === cocktail.name);
     }
-    getImage() {
+    getImage(){
         return this.image;
     }
 }
@@ -97,6 +96,10 @@ class UserManager {
             });
             localStorage.setItem("users", JSON.stringify(updatedUsers));
         }
+    }
+
+    getUserFavourites(user){
+        return user.favourites;
     }
 
     add(cocktail) {

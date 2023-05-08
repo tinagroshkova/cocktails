@@ -6,34 +6,28 @@
     background-color: $dark-main-color !important;
     box-shadow: $box-shadow;
     height: 6vh;
+
     a {
         color: $almost-white-color;
         letter-spacing: 0.1em;
         font-size: 22px;
         font-weight: 400;
         margin: 0 20px;
+        text-decoration: none;
 
         &:hover {
-            color: $light-main-color;
+            color: $second-main-color;
         }
     }
-    .nav-link.active, .navbar-nav .show>.nav-link {
-         background-color: $light-main-color;
-         border-radius: 15px;
-         box-shadow: $box-shadow;
-     }
 
-        .dropdown-item {
-            background-color: $dark-main-color;
-            font-size: 16px !important;
-            width: 100%;
-            margin: 0;
-    }
+    .logoutButton {
+        @include button();
+        width: 80px;
+        text-align: center;
+        position: absolute;
+        right: 40px;
+        background-color: $second-main-color;
 
-    button {
-
-        border: 1px solid $almost-white-color;
-        color: $almost-white-color;
         &:hover {
             background-color: $light-main-color;
             border: 1px solid $light-main-color;

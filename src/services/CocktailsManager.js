@@ -45,13 +45,11 @@ class CocktailsManager {
 
   getAllCocktails = async () => {
     const data = await makeAPICall(COCKTAILS_URL + `search.php?f=t`);
-    // console.log(data);
     this.cocktailsList = data.drinks.map(mapCocktailDataToCocktailObject);
-    console.log(this.cocktailsList);
     return this.cocktailsList;
   };
 
-  search = async (keyword) => {
+  searchCocktails = async (keyword) => {
     const result = await makeAPICall(COCKTAILS_URL + `search.php?s=${keyword}`);
     const searchedCocktails = result.drinks.map(mapCocktailDataToCocktailObject);
     return searchedCocktails;
@@ -61,7 +59,6 @@ class CocktailsManager {
     const data = await makeAPICall(`${COCKTAILS_URL}lookup.php?i=${cocktailId}`);
     if (data.drinks && data.drinks.length > 0) {
       const detailed = mapCocktailDataToCocktailObject(data.drinks[0]);
-      // console.log(detailed);
       return detailed;
     } else {
       console.log('No details found for cocktailId:', cocktailId);
@@ -70,68 +67,66 @@ class CocktailsManager {
   }
 
 
-    getCategories = () => {
-        return makeAPICall(COCKTAILS_URL + `list.php?c=list`)
-            .then(data => {
-                return data.drinks;
-            })
-    }
+  getCategories = () => {
+    return makeAPICall(COCKTAILS_URL + `list.php?c=list`)
+      .then(data => {
+        return data.drinks;
+      })
+  }
 
-    filterByCategory = (category) => {
-        return makeAPICall(COCKTAILS_URL + `filter.php?c=${category}`)
-            .then(data => {
-                return data.drinks;
+  filterByCategory = (category) => {
+    return makeAPICall(COCKTAILS_URL + `filter.php?c=${category}`)
+      .then(data => {
+        console.log(data.drinks)
+        return data.drinks;
 
-            })
-    }
+      })
+  }
 
-    getGlasses = () => {
-        return makeAPICall(COCKTAILS_URL + `list.php?g=list`)
-            .then(data => {
-                return data.drinks;
-            })
-    }
+  getGlasses = () => {
+    return makeAPICall(COCKTAILS_URL + `list.php?g=list`)
+      .then(data => {
+        return data.drinks;
+      })
+  }
 
-    filterByGlass = (glass) => {
-        return makeAPICall(COCKTAILS_URL + `filter.php?g=${glass}`)
-            .then(data => {
-                return data.drinks;
+  filterByGlass = (glass) => {
+    return makeAPICall(COCKTAILS_URL + `filter.php?g=${glass}`)
+      .then(data => {
+        return data.drinks;
 
-            })
-    }
+      })
+  }
 
+  getIngredients = () => {
+    return makeAPICall(COCKTAILS_URL + `list.php?i=list`)
+      .then(data => {
+        return data.drinks;
+      })
+  }
 
-    getIngredients = () => {
-        return makeAPICall(COCKTAILS_URL + `list.php?i=list`)
-            .then(data => {
-                return data.drinks;
-            })
-    }
+  filterByIngredient = (ingredient) => {
+    return makeAPICall(COCKTAILS_URL + `filter.php?i=${ingredient}`)
+      .then(data => {
+        return data.drinks;
+      })
 
+  }
 
-    filterByIngredient = (ingredient) => {
-        return makeAPICall(COCKTAILS_URL + `filter.php?i=${ingredient}`)
-            .then(data => {
-                return data.drinks;
-            })
+  getType = () => {
+    return makeAPICall(COCKTAILS_URL + `list.php?a=list`)
+      .then(data => {
+        return data.drinks;
+      })
+  }
 
-    }
-
-
-    getType = () => {
-        return makeAPICall(COCKTAILS_URL + `list.php?a=list`)
-            .then(data => {
-                return data.drinks;
-            })
-    }
-
-    filterByType = (type) => {
-        return makeAPICall(COCKTAILS_URL + `filter.php?a=${type}`)
-            .then(data => {
-                console.log(data);
-                return data.drinks;
-            })
-    }
+  filterByType = (type) => {
+    return makeAPICall(COCKTAILS_URL + `filter.php?a=${type}`)
+      .then(data => {
+        console.log(data);
+        return data.drinks;
+      })
+  }
 }
 
 

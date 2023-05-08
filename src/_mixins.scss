@@ -1,16 +1,15 @@
 @mixin border() {
-    border: 2px solid $contrast-color;
+    border: 2px solid $light-contrast-color;
     border-radius: 20px;
-    background: transparent;
-    backdrop-filter: blur(15px);
-    box-shadow: $box-shadow;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(25px);
+    box-shadow: $strong-shadow;
 }
 
 @mixin button() {
     width: 80%;
     height: 40px;
     background: $dark-main-color;
-
     border: none;
     border-radius: 40px;
     color: $almost-white-color;
@@ -20,7 +19,9 @@
     cursor: pointer;
 
     &:hover {
-        background-color: $light-main-color;
+        background-color: $contrast-color !important;
+        color: $dark-main-color;
+        text-shadow: none;
     }
 }
 
@@ -34,5 +35,5 @@
     margin-bottom: 50px;
     box-shadow: $box-shadow;
     background-color: rgba(255, 255, 255, 0.7);
-    text-align: center
+    text-align: center 
 }

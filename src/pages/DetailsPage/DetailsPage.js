@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import cocktailsManager from "../../services/CocktailsManager";
 import { useNavigate, useParams } from "react-router-dom";
-import DetailsCard from "../../components/Cards/DetailsCard";
+import cocktailsManager from "../../services/CocktailsManager";
 import userManager from "../../services/UserManager";
+import DetailsCard from "../../components/Cards/DetailsCard";
 import LoginModal from "../../components/Modals/LoginModal";
+import "./DetailsPage.scss";
 
 function DetailsPage() {
     const user = userManager.getLoggedInUser();
@@ -11,7 +12,6 @@ function DetailsPage() {
     const navigate = useNavigate();
     const [cocktail, setCocktail] = useState(null);
     const { id } = useParams();
-
 
     const handleAdd = async (cocktail) => {
         if (!user) {

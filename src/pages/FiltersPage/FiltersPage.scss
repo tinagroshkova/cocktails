@@ -1,0 +1,104 @@
+@import "../../variables";
+@import "../../mixins";
+
+.filters-page {
+    h2 {
+        text-align: center;
+        width: 100%;
+        background-color: $second-main-color;
+        box-shadow: $box-shadow;
+        padding: 10px 0;
+    }
+
+    .ingredients {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        box-sizing: border-box;
+        justify-content: center;
+        width: 80%;
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        .ingredient-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: transparent;
+            backdrop-filter: blur(25px);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: $box-shadow;
+            transition: transform 0.3s ease;
+            &:hover {
+                transform: scale(1.1);
+                backdrop-filter: blur(80px);
+              }
+
+            img {
+                height: 120px;
+                width: 120px;
+                margin: auto;
+                object-fit: cover;
+                cursor: pointer;
+            }
+
+            p {
+                text-align: center;
+                font-size: 14px;
+                padding-bottom: 10px;
+                cursor: pointer;
+            }
+        } 
+    }
+
+    .categories,
+    .drink-types {
+        display: flex;
+        justify-content: space-around;
+        
+        li {
+            list-style: none;
+            display: inline-block;
+            padding: 20px;
+            margin: 0 10px;
+            background: transparent;
+            backdrop-filter: blur(25px);
+            border-radius: 5px;
+            box-shadow: $box-shadow;
+        }
+    }
+
+    .glasses {
+        margin: 20px 0;
+        .glasses-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-gap: 10px;
+            justify-content: center;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 20px;
+        }
+        
+    }
+    .item,
+    li {
+        background: transparent;
+        backdrop-filter: blur(25px);
+        border-radius: 5px;
+        box-shadow: $box-shadow;
+        cursor: pointer;
+        font-size: 1.2rem;
+        padding: 10px;
+        text-align: center;
+        word-wrap: break-word;
+        transition: transform 0.3s ease;
+        &:hover {
+            transform: scale(1.1);
+            backdrop-filter: blur(80px);
+          }
+    }
+}

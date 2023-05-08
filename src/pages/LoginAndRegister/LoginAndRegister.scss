@@ -1,10 +1,6 @@
 @import "../../variables";
 @import "../../mixins";
 
-* {
-    color: $light-main-color;
-}
-
 section {
     display: flex;
     justify-content: center;
@@ -19,6 +15,11 @@ section {
 
     .loginForm,
     .registrationForm {
+        * {
+            color: $light-contrast-color;
+            font-weight: 300;
+
+        }
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -28,14 +29,11 @@ section {
         font-size: 18px;
         top: 20%;
         background: transparent;
-        box-shadow: 0px -1px 50px 12px $dark-main-color;
         z-index: 20;
-        box-shadow: 0px -1px 40px 1px $light-main-color;
         @include border();
 
         h2 {
             font-size: 2em;
-            color: $light-main-color;
             text-align: center;
             padding: 30px 0 0 0;
         }
@@ -63,9 +61,7 @@ section {
         color: $almost-white-color;
     
         a {
-            color: $almost-white-color;
             text-decoration: none;
-            font-weight: 600;
     
             &:hover {
                 color: $second-main-color;
@@ -87,7 +83,7 @@ section {
     position: relative;
     width: 336px;
     margin: 30px;
-    border-bottom: 2px solid $light-main-color;
+    border-bottom: 2px solid $light-contrast-color;
 
     label {
         position: absolute;
@@ -142,7 +138,8 @@ section {
 }
 
 .enabled {
-    background-color: $light-main-color !important;
+    background-color: $light-contrast-color !important;
+    color: $dark-main-color !important;
 }
 
 

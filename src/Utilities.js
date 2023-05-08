@@ -1,6 +1,6 @@
 function makeAPICall(url, options) {
     return fetch(url, options).then((response) => {
-      console.log('response:', response);
+      // console.log('response:', response);
   
       if (response.ok) {
         return new Promise((res, rej) => {
@@ -11,7 +11,7 @@ function makeAPICall(url, options) {
         });
       }
   
-      console.log('response.statusText:', response.statusText);
+      // console.log('response.statusText:', response.statusText);
       return new Promise((resolve, reject) => {
         response.json().then((body) => {
           reject(new Error(body.message));

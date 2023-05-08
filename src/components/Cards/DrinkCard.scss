@@ -12,14 +12,12 @@
     padding-bottom: 20px;
     position: relative;
     border-radius: 40px;
-
-    .card-body {
-        // position: relative;
-    }
+    box-shadow: $strong-shadow;
 
     h5,
     p {
         color: $dark-main-color;
+
     }
 
     img {
@@ -28,6 +26,7 @@
         border-top-right-radius: 40px;
         height: 300px;
         margin: auto;
+        box-shadow: $box-shadow;
         object-fit: cover;
     }
 
@@ -48,6 +47,10 @@
         height: 50px
     }
 
+    .removeButton {
+        background-color: $second-main-color;
+    }
+
     .detailsButton {
         @include button();
         position: absolute;
@@ -56,5 +59,4 @@
         width: 65px;
         font-size: 12px;
     }
-
 }

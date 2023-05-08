@@ -1,44 +1,41 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import React, { useState, useEffect } from "react";
+import { NavLink, Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import LoginForm from "../../pages/LoginAndRegister/LoginForm";
 import RegistrationForm from "../../pages/LoginAndRegister/RegistrationForm";
-import { Link, Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import "./NavBar.scss";
 import { CocktailsPage } from '../../pages/CocktailsPage/CocktailsPage';
 import FavouritesPage from '../../pages/FavouritesPage/FavouritesPage';
-// import ConfirmModal from "../../components/Modals/ConfirmModal";
 import DetailsPage from "../../pages/DetailsPage/DetailsPage";
+import FiltersPage from '../../pages/FiltersPage/FiltersPage';
+import userManager from '../../services/UserManager';
+import ConfirmModal from '../Modals/ConfirmModal';
 
 
 function NavBar() {
+
+  const loggedInUser = userManager.getLoggedInUser();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    const isConfirmed = await ConfirmModal("Logout", "Are you sure you want to logout?");
+    if (isConfirmed) {
+      userManager.logoutUser().then(() => {
+        navigate("/login");
+      });
+    }
+  };
+
   return (
     <>
       <Navbar bg="dark" expand="lg" className="navbar">
-        <Container fluid>
-          <Navbar.Brand><Link to="/cocktails">Cocktails</Link></Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
-            <Nav
-              className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: '100px' }}
-              navbarScroll
-            >
-              <Link to="/favourites" className="nav-link">My favourites</Link>
-
-              <NavDropdown title="Filters" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Categories</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">Glasses</NavDropdown.Item>
-                <NavDropdown.Item href="#action5">Ingredients</NavDropdown.Item>
-                <NavDropdown.Item href="#action5">Drink type</NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
+        <NavLink to="/cocktails" activeclassname="activeLink">Cocktails</NavLink>
+        <NavLink to="/favourites" activeclassname="activeLink">My favourites</NavLink>
+        <NavLink to="/filters" activeclassname="activeLink">Filters</NavLink>
+        {loggedInUser ? (
+          <button className="logoutButton" onClick={handleLogout}>Logout</button>
+        ) : null}
       </Navbar>
 
       <Routes>
@@ -47,6 +44,7 @@ function NavBar() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/cocktails" element={<CocktailsPage />} />
         <Route path="/favourites" element={<FavouritesPage />} />
+        <Route path="/filters" element={<FiltersPage />} />
         <Route path="/details/:id" element={<DetailsPage />} />
 
         {/* <Route path="*" element={<><h2 style={{ color: "white", display: "flex", justifyContent: "center" }}>Page not found. You've taken a wrong turn, but you found a hedgehog.</h2>
