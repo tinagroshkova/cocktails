@@ -1,70 +1,21 @@
-# Getting Started with Create React App
+The application is a collection of cocktails and their preparation instructions. It consists of six pages:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Login:
+This page displays two input fields for the username and password, a login button, and a link to the registration page. If the user makes a mistake while entering the details, an error message is displayed. After successful login, the user is redirected to the cocktails page.
 
-## Available Scripts
+Registration:
+This page has three input fields for the username, password, and repeat password. If the user enters different passwords, the "registration" button becomes inactive, and an error message is displayed. Similarly, if the username is not entered or already exists, an error message is displayed.
 
-In the project directory, you can run:
+Cocktails:
+This page displays a text input field for searching cocktails by name. It also shows a list of cocktails whose names begin with the letter "T". Each card has a "Details" button that leads to the page with detailed information about the cocktail.
 
-### `npm start`
+Cocktail Details:
+This page displays comprehensive information about the selected cocktail and has an "Add to Favorites" button.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Filters:
+This page has four sections that represent different types of filters: "Category", "Glass Type", "Ingredients", and "Drink Type". Each section displays all possible filter values, and each value works as a link. Filters under the "Ingredients" category are visualized with a photo and text. Clicking on any of the filters redirects the user to a page that lists all cocktails matching the selected filter.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Screenshot_26](https://user-images.githubusercontent.com/57560115/236877279-b28f6269-368a-4168-bd10-d13d45a29b23.png)
+![Screenshot_27](https://user-images.githubusercontent.com/57560115/236877284-80234471-6da7-42b7-8328-1f9064f7763f.png)
+![Screenshot_28](https://user-images.githubusercontent.com/57560115/236877291-a55cc62c-e8d9-4148-b05a-ce9e9fee172b.png)
+![Screenshot_29](https://user-images.githubusercontent.com/57560115/236877297-ebd7186e-5529-4432-839d-a82ca7d964a4.png)
