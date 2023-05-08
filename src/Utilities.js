@@ -20,14 +20,5 @@ function makeAPICall(url, options) {
     });
   }
 
-function debounce (action, seconds) {
 
-    let timerId = null;
-
-    return function (...event){
-        clearTimeout(timerId);
-        timerId = setTimeout(action, seconds,...event);
-    }
-}
-
-export {makeAPICall, debounce};
+export {makeAPICall};

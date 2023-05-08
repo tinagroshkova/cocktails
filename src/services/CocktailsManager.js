@@ -51,9 +51,12 @@ class CocktailsManager {
 
   searchCocktails = async (keyword) => {
     const result = await makeAPICall(COCKTAILS_URL + `search.php?s=${keyword}`);
+    if (!result || !result.drinks) {
+        return [];
+    }
     const searchedCocktails = result.drinks.map(mapCocktailDataToCocktailObject);
     return searchedCocktails;
-  }
+}
 
   getDetails = async (cocktailId) => {
     const data = await makeAPICall(`${COCKTAILS_URL}lookup.php?i=${cocktailId}`);
