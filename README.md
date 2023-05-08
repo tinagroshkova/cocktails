@@ -14,3 +14,8 @@ This page displays comprehensive information about the selected cocktail and has
 
 Filters:
 This page has four sections that represent different types of filters: "Category", "Glass Type", "Ingredients", and "Drink Type". Each section displays all possible filter values, and each value works as a link. Filters under the "Ingredients" category are visualized with a photo and text. Clicking on any of the filters redirects the user to a page that lists all cocktails matching the selected filter.
+
+![Screenshot_26](https://user-images.githubusercontent.com/57560115/236877279-b28f6269-368a-4168-bd10-d13d45a29b23.png)
+![Screenshot_27](https://user-images.githubusercontent.com/57560115/236877284-80234471-6da7-42b7-8328-1f9064f7763f.png)
+![Screenshot_28](https://user-images.githubusercontent.com/57560115/236877291-a55cc62c-e8d9-4148-b05a-ce9e9fee172b.png)
+![Screenshot_29](https://user-images.githubusercontent.com/57560115/236877297-ebd7186e-5529-4432-839d-a82ca7d964a4.png)
