@@ -4,14 +4,15 @@ import "../components/../LoginAndRegister/LoginAndRegister.scss";
 import userManager from "../../services/UserManager";
 import { Link, useNavigate } from "react-router-dom";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
+import { } from "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js";
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
   const [alert, setAlert] = useState({ show: false, variant: "", message: "" });
   const [formValid, setFormValid] = useState(false);
+  const [success, setSuccess] = useState(false); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,48 +25,27 @@ const LoginForm = () => {
   };
 
   const validateField = (name, value) => {
-    const newErrors = { ...errors };
-
     if (name === "username") {
-      if (!value) {
-        newErrors.username = "Username is required";
-      } else {
-        delete newErrors.username;
-      }
+      setFormValid(value !== "" && password !== "");
     } else if (name === "password") {
-      if (!value) {
-        newErrors.password = "Password is required";
-      } else {
-        delete newErrors.password;
-      }
+      setFormValid(username !== "" && value !== "");
     }
-
-    setErrors(newErrors);
-    setFormValid(Object.keys(newErrors).length === 0);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const errors = {};
-
-    if (!username) {
-      errors.username = "Username is required";
+    if (!formValid) {
+      return;
     }
-
-    if (!password) {
-      errors.password = "Password is required";
-    }
-
-    if (Object.keys(errors).length === 0) {
-      try {
-        await userManager.loginUser(username, password);
+    try {
+      await userManager.loginUser(username, password);
+      setSuccess(true); 
+      setAlert({ show: true, variant: "success", message: "Login successful!" }); 
+      setTimeout(() => {
         navigate("/");
-      } catch (error) {
-        setAlert({ show: true, variant: "danger", message: "Invalid username or password." });
-      }
-    } else {
-      setErrors(errors);
+      }, 1000); 
+    } catch (error) {
+      setAlert({ show: true, variant: "danger", message: "Invalid username or password." });
     }
   };
 
@@ -83,11 +63,10 @@ const LoginForm = () => {
                 name="username"
                 value={username}
                 onChange={handleChange}
-                isInvalid={!!errors.username}
                 required
               />
               <Form.Label>Username</Form.Label>
-            
+
             </div>
           </Form.Group>
 
@@ -99,20 +78,19 @@ const LoginForm = () => {
                 name="password"
                 value={password}
                 onChange={handleChange}
-                isInvalid={!!errors.password}
                 required
               />
               <Form.Label>Password</Form.Label>
             </div>
           </Form.Group>
-
+          
           <span className="btnHolder">
-            {alert.show && <CustomAlert variant={alert.variant} message={alert.message} />}
+            {alert.show && <CustomAlert variant={alert.variant} message={alert.message} />} 
             <Button type="submit" className={`submit-btn ${formValid ? "enabled" : ""}`}>
               Login
             </Button>
             <div className="registerLink">
-              <p className="haveAnAcount">Don"t have an account?
+              <p className="haveAnAcount">Don't have an account?
                 <Link to="/register"><span className="registerHover">Sign up</span></Link></p>
             </div>
           </span>

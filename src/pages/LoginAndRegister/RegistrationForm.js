@@ -4,16 +4,16 @@ import "../components/../LoginAndRegister/LoginAndRegister.scss";
 import userManager from "../../services/UserManager";
 import { Link, useNavigate } from "react-router-dom";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
+import { } from "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js";
 
 const RegistrationForm = () => {
-
-  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [alert, setAlert] = useState({ show: false, variant: "", message: "" });
   const [formValid, setFormValid] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +29,6 @@ const RegistrationForm = () => {
 
   const validateField = (name, value) => {
     const newErrors = { ...errors };
-
     if (name === "username") {
       if (!value) {
         newErrors.username = "Username is required";
@@ -42,6 +41,7 @@ const RegistrationForm = () => {
       } else {
         delete newErrors.username;
       }
+
     } else if (name === "password") {
       if (!value) {
         newErrors.password = "Password is required";
@@ -72,7 +72,6 @@ const RegistrationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const errors = {};
 
     if (!username) {
@@ -99,7 +98,6 @@ const RegistrationForm = () => {
       errors.confirmPassword = "Passwords do not match";
     }
 
-
     if (Object.keys(errors).length === 0) {
       const users = JSON.parse(localStorage.getItem("users")) || [];
       if (users.some((user) => user.username === username)) {
@@ -119,12 +117,13 @@ const RegistrationForm = () => {
       setErrors(errors);
     }
   };
+
   return (
     <div className="registerPage">
       <section className="pageHolder">
         <form className="registrationForm" onSubmit={handleSubmit}>
           <h2 className="registerTitle">Register</h2>
-          {alert.show && <CustomAlert variant={alert.variant} message={alert.message} />}
+
 
           <Form.Group controlId="username">
             <div className="inputBox">
@@ -173,8 +172,8 @@ const RegistrationForm = () => {
               <Form.Control.Feedback type="invalid" className="text-danger">{errors.confirmPassword}</Form.Control.Feedback>
             </div>
           </Form.Group>
-
           <span className="btnHolder">
+          {alert.show && <CustomAlert variant={alert.variant} message={alert.message} />}
             <Button type="submit" className={`submit-btn ${formValid ? "enabled" : ""}`}>
               Register
             </Button>

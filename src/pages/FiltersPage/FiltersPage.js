@@ -25,48 +25,36 @@ function FiltersPage() {
     }, []);
 
 
-    const handleCategoryClick = (category) => {
-        cocktailsManager.filterByCategory(category)
-            .then(async (filteredCocktails) => {
-                const cocktailsWithDetails = await Promise.all(
-                    filteredCocktails.map(cocktail => cocktailsManager.getDetails(cocktail.idDrink))
-                );
-
-                navigate(`/cocktails?category=${category}`, { state: { cocktails: cocktailsWithDetails } });
-            });
+    const handleCategoryClick = async (category) => {
+        const filteredCocktails = await cocktailsManager.filterByCategory(category);
+        const cocktailsWithDetails = await Promise.all(
+            filteredCocktails.map(cocktail => cocktailsManager.getDetails(cocktail.idDrink))
+        );
+        navigate(`/cocktails?category=${category}`, { state: { cocktails: cocktailsWithDetails } });
     };
 
-    const handleGlassClick = (glass) => {
-        cocktailsManager.filterByGlass(glass)
-            .then(async (filteredCocktails) => {
-                const cocktailsWithDetails = await Promise.all(
-                    filteredCocktails.map(cocktail => cocktailsManager.getDetails(cocktail.idDrink))
-                );
-
-                navigate(`/cocktails?glass=${glass}`, { state: { cocktails: cocktailsWithDetails } });
-            });
+    const handleGlassClick = async (glass) => {
+        const filteredCocktails = await cocktailsManager.filterByGlass(glass);
+        const cocktailsWithDetails = await Promise.all(
+            filteredCocktails.map(cocktail => cocktailsManager.getDetails(cocktail.idDrink))
+        );
+        navigate(`/cocktails?glass=${glass}`, { state: { cocktails: cocktailsWithDetails } });
     };
 
-    const handleDrinkTypeClick = (type) => {
-        cocktailsManager.filterByType(type)
-            .then(async (filteredCocktails) => {
-                const cocktailsWithDetails = await Promise.all(
-                    filteredCocktails.map(cocktail => cocktailsManager.getDetails(cocktail.idDrink))
-                );
-
-                navigate(`/cocktails?type=${type}`, { state: { cocktails: cocktailsWithDetails } });
-            });
+    const handleDrinkTypeClick = async (type) => {
+        const filteredCocktails = await cocktailsManager.filterByType(type);
+        const cocktailsWithDetails = await Promise.all(
+            filteredCocktails.map(cocktail => cocktailsManager.getDetails(cocktail.idDrink))
+        );
+        navigate(`/cocktails?type=${type}`, { state: { cocktails: cocktailsWithDetails } });
     };
 
-    const handleIngredientClick = (ingredient) => {
-        cocktailsManager.filterByIngredient(ingredient)
-            .then(async (filteredCocktails) => {
-                const cocktailsWithDetails = await Promise.all(
-                    filteredCocktails.map(cocktail => cocktailsManager.getDetails(cocktail.idDrink))
-                );
-
-                navigate(`/cocktails?ingredient=${ingredient}`, { state: { cocktails: cocktailsWithDetails } });
-            });
+    const handleIngredientClick = async (ingredient) => {
+        const filteredCocktails = await cocktailsManager.filterByIngredient(ingredient);
+        const cocktailsWithDetails = await Promise.all(
+            filteredCocktails.map(cocktail => cocktailsManager.getDetails(cocktail.idDrink))
+        );
+        navigate(`/cocktails?ingredient=${ingredient}`, { state: { cocktails: cocktailsWithDetails } });
     };
 
     return (

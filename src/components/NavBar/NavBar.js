@@ -17,7 +17,6 @@ function NavBar() {
 
   const loggedInUser = userManager.getLoggedInUser();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleLogout = async () => {
     const isConfirmed = await ConfirmModal("Logout", "Are you sure you want to logout?");
